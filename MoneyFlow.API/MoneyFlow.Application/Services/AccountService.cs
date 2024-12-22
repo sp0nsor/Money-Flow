@@ -66,15 +66,15 @@ namespace MoneyFlow.AppLication.Services
                 return Results.BadRequest("Account data has not been verified");
             }
 
-            if (request.moneyAmount > account.MoneyAmount)
+            if (request.BookPrice > account.MoneyAmount)
             {
                 return Results.BadRequest("There is not enough money in the account");
             }
 
             await accountRepository.MakeTransfer(
                 request.SenderAccountNumber,
-                request.RecipientAccountNumber,
-                request.moneyAmount);
+                request.recipientAccountNumber,
+                request.BookPrice);
 
             return Results.Ok();
         }
